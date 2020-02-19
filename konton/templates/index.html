@@ -8,12 +8,21 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#">Logga in</a></li>
-            <li><a href="#">Logga ut</a></li>
-            <li><a href="#">Registrera</a></li>
-            <li><a href="#">Din Profil</a></li>
+            <li><a href="{% url 'index' %}">Logga in</a></li>
+            <li><a href="{% url 'logout' %}">Logga ut</a></li>
+            <li><a href="{% url 'index' %}">Registrera</a></li>
+            <li><a href="{% url 'index' %}">Din Profil</a></li>
         </ul>
     </nav>
+    <hr>
+    {% if messages %}
+    <div>
+    {% for message in messages%}
+    <h1>{{ message }}</h1>
+    {% endfor%}
+    </div>
+    
+    {% endif %}
 </body>
 
 </html>

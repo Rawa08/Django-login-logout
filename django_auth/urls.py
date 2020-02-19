@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from konton.views import index
+from konton.views import index, logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name='index')
+    url(r'^$', index, name='index'),
+    url(r'^konton/logout/$', logout, name='logout')
 ]
