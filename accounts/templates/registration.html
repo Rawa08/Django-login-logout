@@ -1,0 +1,18 @@
+
+
+{% extends 'base.html'%}
+
+{% block page_title %}Ny användare{% endblock %}
+
+{% block page_heading %}<h1>Registrera ny användare</h1>
+ {% endblock %}
+
+{% block content %}
+<p>Om du har redan en konto klicka här för <a href="{% url 'login' %}">inloggning</a><p>
+<form method="POST">
+    {% csrf_token %}
+    {{registration_form.as_p}}
+    <button type="submit">Registrera dig!</button>
+    </form>
+     {% endblock %}
+  
