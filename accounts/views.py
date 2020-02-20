@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
 # Create your views here.
@@ -36,7 +37,27 @@ def login(request):
 
 
 def registration(request):
-    registration_form = UserRegistrationForm()
+    if request.user.is_authenticated:#om användaren är inloggad
+        return redirect(reverse('index'))
+    if request.method == 'POST':
+        registration_form = UserRegistrationForm(request.POST)
+        if registration_form.is_valid():
+            registration_form.save()
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(request, 'Du är nu registrerad')
+                return redirect(reverse('index'))
+            else:
+                messages.error(request, 'registreringen misslyckades!')    
+    else:
+        registration_form = UserRegistrationForm()
 
 
     return render(request,'registration.html', {'registration_form': registration_form})
+
+
+
+def user_profile(request):
+    user = User.objects.get(email=request.user.email) 
+    return render(request, 'profile.html', {'profile': user})   
