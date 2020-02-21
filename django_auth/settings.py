@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('D_S_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['django-authentication-rawa.herokuapp.com']
+ALLOWED_HOSTS = ['https://django-authentication-rawa.herokuapp.com']
 
 
 # Application definition
