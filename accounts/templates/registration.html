@@ -8,11 +8,13 @@
  {% endblock %}
 
 {% block content %}
-<p>Om du har redan en konto klicka här för <a href="{% url 'login' %}">inloggning</a><p>
+<div class="container">
+<p>Om du har redan en konto klicka här för <a href="{% url 'login' %}">inloggning</a></p>
 <form method="POST">
     {% csrf_token %}
     {{registration_form.as_p}}
     <button type="submit">Registrera dig!</button>
     </form>
+    </div>
      {% endblock %}
   

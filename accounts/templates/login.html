@@ -8,11 +8,14 @@
  {% endblock %}
 
 {% block content %}
-
+<div class="container">
  <form method="POST">
     {% csrf_token %}
     {{login_form}}
     <button type="submit">Logga in</button>
     </form>
+
+    <p> <a href="{%url 'password_reset'%}">Glömt löseord!</a></p>
+</div>
      {% endblock %}
   
